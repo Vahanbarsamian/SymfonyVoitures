@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}/
+	{{titre}}
+{% endblock %}
+
+{% block titre %}
+	{{titre}}
+{% endblock %}
+{% block body %}
+	{% for message in app.flashes('success')  %}
+		<div class="alert alert-success">
+			{{message}}
+		</div>
+	{% endfor %}
+	<div class="d-flex justify-content-center">
+		{{ form_start(form, {'attr':{'class':'form-inline'}}) }}
+		{{ form_widget(form,{'attr':{'class':'form-inline mx-2'}}) }}
+		<input type="submit" class="form-control ml-0 btn btn-info" value="Rechercher">
+		{{ form_end(form) }}
+	</div>
+	{% if admin %}
+		<div class="d-flex justify-content-end mr-4 my-4">
+			<a href="{{path('admin_add_car')}}" class="d-inline-block col-2 btn btn-success">Ajouter</a>
+		</div>
+	{% endif %}
+	<div class="row align-items-center mx-2 mt-5 align-items-stretch">
+		{% for voiture in voitures %}
+			<div class="col-lg-3 col-md-6 col-sm-12 mb-3 justify-content-arround">
+				<div class="card mb-2">
+					<h3 class="card-header">{{voiture.modele.marque.libelle}}</h3>
+					<div class="card-body">
+						<h5 class="card-title">{{voiture.modele.libelle}}</h5>
+						<h6 class="card-subtitle text-muted">{{voiture.annee}}</h6>
+					</div>
+					<img class="card-image img-fluid rounded" src="{{ asset ('/img/'~ voiture.modele.image)}}" alt="{{voiture.modele.image}}" style="min-height: 18.3rem;">
+					<div class="card-body">
+						<p class="card-text">Description succinte du véhicule</p>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Année :
+							{{voiture.annee}}</li>
+						<li class="list-group-item">Nb de portes :
+							{{voiture.nbPorte}}</li>
+						<li class="list-group-item">Prix moyen :
+							{{voiture.modele.prixMoyen}}
+							€</li>
+						<li class="list-group-item">Immatriculation :
+							{{voiture.immatriculation}}</li>
+					</ul>
+					<div class="card-body">
+						<a href="#" class="card-link">En savoir plus &nbsp;<i class="far fa-arrow-alt-circle-down"></i>
+						</a>
+					</div>
+					<div class="card-footer text-muted">
+						2 days ago
+					</div>
+				</div>
+				{% if admin %}
+					<div class="d-flex justify-content-between mb-4">
+						<a href="{{path('admin_modify_car', {'id':voiture.id})}}" class="btn btn-warning d-inline-block col-5">Modifier</a>
+						<form action="{{path('admin_delete_car', {'id':voiture.id})}}" method="POST" class="d-inline-block p-0 m-0 col-5" onsubmit="return confirm('Voulez-vous vraiment supprimer {{voiture.modele.libelle}}  immatriculé: {{voiture.immatriculation}}')">
+							<input type="hidden" name="_method" value="DELETE">
+							<input type="hidden" name="_token" value="{{ csrf_token(voiture.id) }}">
+							<input type="submit" value="Supprimer" class="btn btn-danger w-100">
+						</form>
+					</div>
+				{% endif %}
+			</div>
+		{% endfor %}
+	</div>
+
+	<div class="navigation ml-3 p-2 d-flex">
+		<div style="margin:0 auto">{{ knp_pagination_render(voitures) }}</div>
+	</div>
+
+{% endblock %}

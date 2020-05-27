@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	/
+	{{titre}}
+{% endblock %}
+{% block titre %}
+	{{titre}}
+{% endblock %}
+{% block body %}
+    {% if error %}
+        <div class="alert alert-danger">
+            Le login ou le mot de passe ne sont pas correct
+        </div>
+    {% endif %}
+	<form action="{{path('login')}}" method="post" class="my-5">
+		<div class="form-group add-car mx-auto">
+			<label for="Username">Identifiant</label>
+			<input type="text" name="_username" id="Username" class="form-control" required value="{{lastUserName}}">
+		</div>
+		<div class="form-group add-car mx-auto">
+			<label for="Password">Password</label>
+			<input type="password" name="_password" id="Password" class="form-control" required>
+		</div>
+		<div class="d-flex form-group add-car mx-auto justify-content-end">
+			<input type="submit" value="Soumettre" class="btn btn-primary">
+		</div>
+	</form>
+{% endblock %}

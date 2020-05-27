@@ -1,0 +1,35 @@
+h1{
+    width: 99%;
+}
+.titre{
+    margin-left: 2%;
+}
+footer{
+    display: flex;
+    height: 150px;
+}
+.carousel-indicators li{
+background-color: rgb(69, 198, 221);
+}
+.carousel-control-next-icon,
+.carousel-control-prev-icon{
+    background-color: rgb(69, 198, 221);
+    border-radius: 50%;
+}
+.carousel-control-next,
+.carousel-control-prev{
+    width: 43%;
+}
+.img-car{
+    height: 150px;
+    margin: 0 auto;
+}
+.carousel-item{
+    width: 100%;
+}
+.form-inline .form-control {
+    margin-right: 15px;
+}
+.add-car{
+    width: 60%;
+}

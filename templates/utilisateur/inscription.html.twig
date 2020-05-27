@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	/ Inscription
+{% endblock %}
+{% block titre %}
+	{{titre}}
+{% endblock %}
+{% block body %}
+	{{ form_start(form) }}
+	{{ form_widget(form, {'attr':{'class':'add-car mt-5 mx-auto'}}) }}
+	<div class="form-group d-flex justify-content-end mx-auto add-car">
+		<input type="submit" class="btn btn-primary" value="Inscription">
+	</div>
+	{{ form_end(form) }}
+{% endblock %}

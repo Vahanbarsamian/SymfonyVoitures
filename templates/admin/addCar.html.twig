@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}/
+	{{titre}}
+{% endblock %}
+
+{% block titre %}
+	{{titre}}
+{% endblock %}
+{% block body %}
+	<div class="d-flex my-5 col-12 justify-content-center">
+		{{ form_start(form, {'attr':{'class':"add-car"}}) }}
+		{{ form_widget(form) }}
+		<div class="d-flex justify-content-end">
+			<a href="{{path('admin_list_cars')}}" class="btn btn-warning mr-2">Annuler</a>
+			<input type="submit" class="btn btn-primary align-right" value="Créer">
+		</div>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}
